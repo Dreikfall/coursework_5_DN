@@ -70,7 +70,7 @@ class Arena(metaclass=BaseSingleton):
         if result:
             return result
         self._stamina_regeneration()
-        self.enemy.hit(self.player)
+        return self.enemy.hit(self.player)
 
     def _end_game(self, result='draw'):
         '''КНОПКА ЗАВЕРШЕНИЕ ИГРЫ - > return result: str
@@ -92,9 +92,9 @@ class Arena(metaclass=BaseSingleton):
         запускаем следующий ход
         возвращаем результат удара строкой'''
 
-        result = self.player.hit(self.enemy)
-        self.next_turn()
-        return result
+        result_1 = self.player.hit(self.enemy)
+        result_2 = self.next_turn()
+        return f'{result_1}\n{result_2}'
 
     def player_use_skill(self):
         '''КНОПКА ИГРОК ИСПОЛЬЗУЕТ УМЕНИЕ
